@@ -1,6 +1,7 @@
 FROM registry.ci.openshift.org/ocp/builder:rhel-8-golang-1.16-openshift-4.8 AS builder
 WORKDIR /go/src/github.com/improbable-eng/thanos
 COPY . .
+RUN set -x && ls -l && ls -l vendor && sha256sum go.mod vendor/modules.txt
 ENV GOFLAGS="-mod=vendor"
 ENV GO111MODULE=on
 ENV GOPROXY=direct
